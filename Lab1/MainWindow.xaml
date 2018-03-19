@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab1"
         mc:Ignorable="d"
-        Title="MainWindow" MinWidth="900" MinHeight="794" Height="Auto" Width="Auto" d:DesignWidth="900" d:DesignHeight="793.2">
+        Title="MainWindow" MinWidth="900" MinHeight="794"  d:DesignWidth="900" d:DesignHeight="793.2">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -36,7 +36,16 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0">
                 <Label Content="DepartmentObservable" HorizontalAlignment="Center" ></Label>
-                <ListBox MinWidth="300" MinHeight="300"></ListBox>
+                <ListBox MinWidth="300" MinHeight="300">
+                    <ListBox.ContextMenu>
+                        <ContextMenu >
+                            <MenuItem Header="Add default Person"></MenuItem>
+                            <MenuItem Header="Add Default Researcher"></MenuItem>
+                            <MenuItem Header="Add Default Programmer"></MenuItem>
+                            <MenuItem Header="Remove"></MenuItem>
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
+                </ListBox>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1">
                 <Label Content="Researcher" HorizontalAlignment="Center" ></Label>
@@ -69,7 +78,15 @@
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="2">
                 <Label Content="Programmer" HorizontalAlignment="Center" ></Label>
-                <ListBox MinWidth="300" MinHeight="300"></ListBox>
+                <ListBox MinWidth="300" MinHeight="300">
+                    <ListBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Add custom"></MenuItem>
+                            <MenuItem Header="Add default"></MenuItem>
+                            <MenuItem Header="Remove"></MenuItem>
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
+                </ListBox>
             </StackPanel>
         </Grid>
         <DockPanel Grid.Row="2">
