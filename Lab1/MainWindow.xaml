@@ -5,8 +5,83 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" MinWidth="900" MinHeight="794" Height="Auto" Width="Auto" d:DesignWidth="900" d:DesignHeight="793.2">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Header="New"></MenuItem>
+                <MenuItem Header="Open"></MenuItem>
+                <MenuItem Header="Save"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit Programmers">
+                <MenuItem Header="Add Custom"></MenuItem>
+                <MenuItem Header="Add Default"></MenuItem>
+                <MenuItem Header="Remove"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1" x:Name="grid_content_2"  ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="Auto"/>
+                <ColumnDefinition  Width="Auto"/>
+                <ColumnDefinition  Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <Label Content="DepartmentObservable" HorizontalAlignment="Center" ></Label>
+                <ListBox MinWidth="300" MinHeight="300"></ListBox>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="1">
+                <Label Content="Researcher" HorizontalAlignment="Center" ></Label>
+                <ListBox MinWidth="300" MinHeight="300"></ListBox>
+                <Label Content="Selected Researcher:" HorizontalAlignment="Left" ></Label>
+                <Grid ShowGridLines="True">
+                    <!-- Устанавливаем две строки -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <!-- Устанавливаем три столбца -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Name:"></Label>
+                    <TextBlock HorizontalAlignment="Stretch" Grid.Column="1" Text="Empty"></TextBlock>
+                    <Label Grid.Row="1" Grid.Column="0" Content="Surname"></Label>
+                    <TextBlock HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column ="1" Text="Empty"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Experience"></Label>
+                    <TextBlock HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column ="1" Text="Empty"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Birthday day time"></Label>
+                    <TextBlock HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column ="1" Text="Empty"/>
+                </Grid>
+                <Label Content="Papers:" HorizontalAlignment="Center"></Label>
+                <ListBox HorizontalAlignment="Stretch" MinHeight="200"></ListBox>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="2">
+                <Label Content="Programmer" HorizontalAlignment="Center" ></Label>
+                <ListBox MinWidth="300" MinHeight="300"></ListBox>
+            </StackPanel>
+        </Grid>
+        <DockPanel Grid.Row="2">
+            <StackPanel DockPanel.Dock="Left">
+                <RadioButton Content="Date Template"></RadioButton>
+                <RadioButton Content="No Date Template"></RadioButton>
+            </StackPanel>
+            <Label DockPanel.Dock ="Top" Content="Collection is not changed" HorizontalAlignment="Center"></Label>
+            <DockPanel DockPanel.Dock="Right" HorizontalAlignment="Center">
+                <Label Content="Percentage of researchers:"></Label>
+                <TextBlock MinWidth="30"></TextBlock>
+            </DockPanel>
+        </DockPanel>
     </Grid>
 </Window>
