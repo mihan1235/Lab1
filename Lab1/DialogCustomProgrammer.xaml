@@ -1,0 +1,35 @@
+﻿<Window x:Class="Lab1.DialogCustomProgrammer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab1"
+        mc:Ignorable="d"
+        Title="DialogCustomProgrammer" Height="320" Width="382">
+    <Grid>
+        <StackPanel Margin="1">
+            <DockPanel Margin="2">
+                <Label Content="Name"></Label>
+                <TextBlock HorizontalAlignment="Stretch" ></TextBlock>                
+            </DockPanel>
+            <DockPanel Margin="2">
+                <Label Content="Surname"></Label>
+                <TextBlock HorizontalAlignment="Stretch" ></TextBlock>
+            </DockPanel>
+            <DockPanel Margin="2">
+                <Label Content="Day of birthday"></Label>
+                <DatePicker ></DatePicker>
+            </DockPanel>
+            <StackPanel Margin="2">
+                <Label Content="Choose paper's themes:"></Label>
+                <ListBox MinHeight="119"></ListBox>
+            </StackPanel>
+            <Grid >
+                <Button IsDefault="True" Click="Accept_Click" HorizontalAlignment="Left" Margin="23,5,0,0"
+                        MinWidth="60">Ok</Button>
+                <Button IsCancel="True" Click="Accept_Click" HorizontalAlignment="Right" Margin="0,5,23,0"
+                        MinWidth="60">Cancel</Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -3,9 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lib="clr-namespace:library;assembly=library"
         xmlns:local="clr-namespace:Lab1"
         mc:Ignorable="d"
-        Title="MainWindow" MinWidth="900" MinHeight="794"  d:DesignWidth="900" d:DesignHeight="793.2">
+        Title="MainWindow" MinWidth="900" MinHeight="794"  d:DesignWidth="995.2" d:DesignHeight="836.4">
+    <Window.DataContext>
+        <lib:DepartmentObservable/>
+    </Window.DataContext>
+    <Window.Resources>
+        <lib:DepartmentObservable x:Key="key_department"></lib:DepartmentObservable>
+        <CollectionViewSource Source="{Binding Source={StaticResource key_department}}" x:Key="key_view_Researchers" 
+                              Filter="FilterByResearcher"></CollectionViewSource>
+        <CollectionViewSource Source="{Binding Source={StaticResource key_department}}" x:Key="key_view_Programmers"
+                              Filter="FilterByProgrammer"></CollectionViewSource>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -14,12 +25,12 @@
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="File">
-                <MenuItem Header="New"></MenuItem>
-                <MenuItem Header="Open"></MenuItem>
-                <MenuItem Header="Save"></MenuItem>
+                <MenuItem Header="New" Click="new_make_DOCollection"></MenuItem>
+                <MenuItem Header="Open" Click="open_DOCollection"></MenuItem>
+                <MenuItem Header="Save" Click="save_DOCollection"></MenuItem>
             </MenuItem>
             <MenuItem Header="Edit Programmers">
-                <MenuItem Header="Add Custom"></MenuItem>
+                <MenuItem Header="Add Custom" Click="add_custom_programmer"></MenuItem>
                 <MenuItem Header="Add Default"></MenuItem>
                 <MenuItem Header="Remove"></MenuItem>
             </MenuItem>
@@ -36,12 +47,13 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0">
                 <Label Content="DepartmentObservable" HorizontalAlignment="Center" ></Label>
-                <ListBox MinWidth="300" MinHeight="300">
+                <ListBox x:Name="ListboxDO" Margin="2" MinWidth="300" MinHeight="300" 
+                         ItemsSource="{Binding Source={StaticResource key_department}}">
                     <ListBox.ContextMenu>
                         <ContextMenu >
-                            <MenuItem Header="Add default Person"></MenuItem>
-                            <MenuItem Header="Add Default Researcher"></MenuItem>
-                            <MenuItem Header="Add Default Programmer"></MenuItem>
+                            <MenuItem Header="Add default Person" Click="DO_add_def_person"></MenuItem>
+                            <MenuItem Header="Add Default Researcher" Click="DO_add_def_researcher"></MenuItem>
+                            <MenuItem Header="Add Default Programmer" Click="DO_add_def_programmer"></MenuItem>
                             <MenuItem Header="Remove"></MenuItem>
                         </ContextMenu>
                     </ListBox.ContextMenu>
@@ -49,8 +61,9 @@
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1">
                 <Label Content="Researcher" HorizontalAlignment="Center" ></Label>
-                <ListBox MinWidth="300" MinHeight="300"></ListBox>
-                <Label Content="Selected Researcher:" HorizontalAlignment="Left" ></Label>
+                <ListBox x:Name="ListBoxRes" Margin="2" MinWidth="300" MinHeight="300"
+                         ItemsSource="{Binding Source={StaticResource key_view_Programmers}}"/>
+                <Label Margin="2" Content="Selected Researcher:" HorizontalAlignment="Left" ></Label>
                 <Grid ShowGridLines="True">
                     <!-- Устанавливаем две строки -->
                     <Grid.RowDefinitions>
@@ -78,10 +91,11 @@
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="2">
                 <Label Content="Programmer" HorizontalAlignment="Center" ></Label>
-                <ListBox MinWidth="300" MinHeight="300">
+                <ListBox x:Name="ListBoxP" Margin ="2" MinWidth="300" MinHeight="300"
+                         ItemsSource="{Binding Source={StaticResource key_view_Programmers}}">
                     <ListBox.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Add custom"></MenuItem>
+                            <MenuItem Header="Add custom" Click="context_menu_custom_pr" ></MenuItem>
                             <MenuItem Header="Add default"></MenuItem>
                             <MenuItem Header="Remove"></MenuItem>
                         </ContextMenu>
