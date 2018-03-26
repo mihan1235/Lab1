@@ -4,21 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace library
 {
     public class DepartmentObservable : ObservableCollection<Person>
     {
-        bool collection_changed;
-        public bool DOCollectionChanged
+        bool collection_is_changed;
+        public bool CollectionIsChanged
         {
             get
             {
-                return collection_changed;
+                return collection_is_changed;
             }
             set
             {
-                collection_changed = value;
+                collection_is_changed = value;
             }
         }
         public bool PercentageOfResearchers
@@ -31,15 +32,20 @@ namespace library
 
         public DepartmentObservable()
         {
-            //CollectionChanged += detect_collection_changed();
+            
             AddDefaultPerson();
             AddDefaultPerson();
             AddDefaultPerson();
+            PapersSet.Add(new Paper("How not to do bad things",0,new DateTime(1995,05,31)));
+            PapersSet.Add(new Paper("Why doese nobody need functional analysis",0, new DateTime(2002, 12, 01)));
+            PapersSet.Add(new Paper("Why everybody love C language!?", 0, new DateTime(2017, 01, 13)));
+            PapersSet.Add(new Paper("Do we need to learn Fortran in 2017",0,new DateTime(2017,02,16)));
+            CollectionChanged += detect_collection_changed;
         }
 
-        private void detect_collection_changed()
+        private void detect_collection_changed(object sender, NotifyCollectionChangedEventArgs e)
         {
-
+            CollectionIsChanged = true;
         }
 
         public void AddDefaultPerson()
