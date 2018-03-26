@@ -8,7 +8,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Width="1288" Height="833.2">
     <Window.Resources>
-        <lib:DepartmentObservable x:Key="key_department"></lib:DepartmentObservable>
         <CollectionViewSource Source="{Binding Source={StaticResource key_department}}" x:Key="key_view_Researchers" 
                               Filter="FilterByResearcher"></CollectionViewSource>
         <CollectionViewSource Source="{Binding Source={StaticResource key_department}}" x:Key="key_view_Programmers"

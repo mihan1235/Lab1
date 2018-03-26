@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using library;
 
 namespace Lab1
 {
@@ -27,6 +28,26 @@ namespace Lab1
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;
+            
+        }
+
+        public Programmer GetCustomProgrammer()
+        {
+            Programmer obj = new Programmer();
+            if (CustomProgrammerName.Text.Length != 0)
+            {
+                obj.Name = CustomProgrammerName.Text;
+            }
+            if (CustomProgrammerSurname.Text.Length != 0)
+            { 
+                obj.Surname = CustomProgrammerSurname.Text;
+            }
+            
+            if(CustomProgrammerBirth.SelectedDate != null)
+            {
+                obj.Birthday = (DateTime)CustomProgrammerBirth.SelectedDate;
+            }
+            return obj;
         }
     }
 }

@@ -122,7 +122,8 @@ namespace Lab1
             DialogCustomProgrammer dialog = new DialogCustomProgrammer();
             if (dialog.ShowDialog() == true)
             {
-
+                var obj = (DepartmentObservable)this.FindResource("key_department");
+                obj.Add(dialog.GetCustomProgrammer());
             }
             else
             {

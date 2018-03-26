@@ -6,23 +6,24 @@
         xmlns:local="clr-namespace:Lab1"
         mc:Ignorable="d"
         Title="DialogCustomProgrammer" Height="320" Width="382">
+    
     <Grid>
         <StackPanel Margin="1">
             <DockPanel Margin="2">
                 <Label Content="Name"></Label>
-                <TextBox HorizontalAlignment="Stretch" ></TextBox>                
+                <TextBox Name="CustomProgrammerName" HorizontalAlignment="Stretch" ></TextBox>                
             </DockPanel>
             <DockPanel Margin="2">
                 <Label Content="Surname"></Label>
-                <TextBox HorizontalAlignment="Stretch" ></TextBox>
+                <TextBox Name ="CustomProgrammerSurname" HorizontalAlignment="Stretch" ></TextBox>
             </DockPanel>
             <DockPanel Margin="2">
                 <Label Content="Day of birthday"></Label>
-                <DatePicker ></DatePicker>
+                <DatePicker Name="CustomProgrammerBirth" ></DatePicker>
             </DockPanel>
             <StackPanel Margin="2">
                 <Label Content="Choose paper's themes:"></Label>
-                <ListBox MinHeight="119"></ListBox>
+                <ListBox ItemsSource="{Binding Source={StaticResource key_department}, Path = PapersSet }" MinHeight="119"></ListBox>
             </StackPanel>
             <Grid >
                 <Button IsDefault="True" Click="Accept_Click" HorizontalAlignment="Left" Margin="23,5,0,0"

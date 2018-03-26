@@ -2,8 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Lab1"
+             xmlns:lib="clr-namespace:library;assembly=library"
              StartupUri="MainWindow.xaml">
+    
     <Application.Resources>
-         
+        <lib:DepartmentObservable x:Key="key_department"></lib:DepartmentObservable>
     </Application.Resources>
 </Application>

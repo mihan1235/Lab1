@@ -28,7 +28,15 @@ namespace library
             set;
         }
 
-        List<Paper> PapersSet = new List<Paper>();
+        List<Paper> papers_set = new List<Paper>();
+
+        public List<Paper> PapersSet
+        {
+            get
+            {
+                return papers_set;
+            }
+        }
 
         public DepartmentObservable()
         {
@@ -36,10 +44,10 @@ namespace library
             //AddDefaultPerson();
             //AddDefaultPerson();
             //AddDefaultPerson();
-            PapersSet.Add(new Paper("How not to do bad things",0,new DateTime(1995,05,31)));
-            PapersSet.Add(new Paper("Why doese nobody need functional analysis",0, new DateTime(2002, 12, 01)));
-            PapersSet.Add(new Paper("Why everybody love C language!?", 0, new DateTime(2017, 01, 13)));
-            PapersSet.Add(new Paper("Do we need to learn Fortran in 2017",0,new DateTime(2017,02,16)));
+            papers_set.Add(new Paper("How not to do bad things",0,new DateTime(1995,05,31)));
+            papers_set.Add(new Paper("Why doese nobody need functional analysis",0, new DateTime(2002, 12, 01)));
+            papers_set.Add(new Paper("Why everybody love C language!?", 0, new DateTime(2017, 01, 13)));
+            papers_set.Add(new Paper("Do we need to learn Fortran in 2017",0,new DateTime(2017,02,16)));
             CollectionChanged += detect_collection_changed;
         }
 
