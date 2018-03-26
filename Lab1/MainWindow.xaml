@@ -6,10 +6,7 @@
         xmlns:lib="clr-namespace:library;assembly=library"
         xmlns:local="clr-namespace:Lab1"
         mc:Ignorable="d"
-        Title="MainWindow" MinWidth="900" MinHeight="794"  d:DesignWidth="995.2" d:DesignHeight="836.4">
-    <Window.DataContext>
-        <lib:DepartmentObservable/>
-    </Window.DataContext>
+        Title="MainWindow" Width="1288" Height="833.2">
     <Window.Resources>
         <lib:DepartmentObservable x:Key="key_department"></lib:DepartmentObservable>
         <CollectionViewSource Source="{Binding Source={StaticResource key_department}}" x:Key="key_view_Researchers" 
@@ -17,6 +14,10 @@
         <CollectionViewSource Source="{Binding Source={StaticResource key_department}}" x:Key="key_view_Programmers"
                               Filter="FilterByProgrammer"></CollectionViewSource>
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:CustomCommands.AddCustomProgrammer"
+                        Executed="add_custom_programmer"></CommandBinding>
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -30,7 +31,7 @@
                 <MenuItem Header="Save" Click="save_DOCollection"></MenuItem>
             </MenuItem>
             <MenuItem Header="Edit Programmers">
-                <MenuItem Header="Add Custom" Click="add_custom_programmer"></MenuItem>
+                <MenuItem Header="Add Custom" Command="local:CustomCommands.AddCustomProgrammer"></MenuItem>
                 <MenuItem Header="Add Default"></MenuItem>
                 <MenuItem Header="Remove"></MenuItem>
             </MenuItem>
@@ -54,7 +55,7 @@
                             <MenuItem Header="Add default Person" Click="DO_add_def_person"></MenuItem>
                             <MenuItem Header="Add Default Researcher" Click="DO_add_def_researcher"></MenuItem>
                             <MenuItem Header="Add Default Programmer" Click="DO_add_def_programmer"></MenuItem>
-                            <MenuItem Header="Remove"></MenuItem>
+                            <MenuItem Header="Remove" ></MenuItem>
                         </ContextMenu>
                     </ListBox.ContextMenu>
                 </ListBox>
@@ -62,7 +63,7 @@
             <StackPanel Grid.Row="0" Grid.Column="1">
                 <Label Content="Researcher" HorizontalAlignment="Center" ></Label>
                 <ListBox x:Name="ListBoxRes" Margin="2" MinWidth="300" MinHeight="300"
-                         ItemsSource="{Binding Source={StaticResource key_view_Programmers}}"/>
+                         ItemsSource="{Binding Source={StaticResource key_view_Researchers}}"/>
                 <Label Margin="2" Content="Selected Researcher:" HorizontalAlignment="Left" ></Label>
                 <Grid ShowGridLines="True">
                     <!-- Устанавливаем две строки -->
@@ -95,7 +96,12 @@
                          ItemsSource="{Binding Source={StaticResource key_view_Programmers}}">
                     <ListBox.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Add custom" Click="context_menu_custom_pr" ></MenuItem>
+                            <MenuItem Header="Add custom" Command="local:CustomCommands.AddCustomProgrammer">
+                                <MenuItem.CommandBindings>
+                                    <CommandBinding Command="local:CustomCommands.AddCustomProgrammer"
+                                                    Executed="add_custom_programmer"></CommandBinding>
+                                </MenuItem.CommandBindings>
+                            </MenuItem>
                             <MenuItem Header="Add default"></MenuItem>
                             <MenuItem Header="Remove"></MenuItem>
                         </ContextMenu>

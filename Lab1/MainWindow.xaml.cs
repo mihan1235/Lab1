@@ -65,28 +65,28 @@ namespace Lab1
             obj.AddDefaultResearcher();
         }
 
-        private void make_custom_programmer()
-        {
-            DialogCustomProgrammer dialog = new DialogCustomProgrammer();
-            if (dialog.ShowDialog() == true)
-            {
+        //private void make_custom_programmer()
+        //{
+        //    DialogCustomProgrammer dialog = new DialogCustomProgrammer();
+        //    if (dialog.ShowDialog() == true)
+        //    {
 
-            }
-            else
-            {
+        //    }
+        //    else
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
-        private void add_custom_programmer(object sender, RoutedEventArgs e)
-        {
-            make_custom_programmer();
-        }
+        //private void add_custom_programmer(object sender, RoutedEventArgs e)
+        //{
+        //    make_custom_programmer();
+        //}
 
-        private void context_menu_custom_pr(object sender, RoutedEventArgs e)
-        {
-            make_custom_programmer();
-        }
+        //private void context_menu_custom_pr(object sender, RoutedEventArgs e)
+        //{
+        //    make_custom_programmer();
+        //}
 
         private void new_make_DOCollection(object sender, RoutedEventArgs e)
         {
@@ -115,6 +115,19 @@ namespace Lab1
         {
             var obj = (DepartmentObservable)this.FindResource("key_department");
             obj.Add(new Programmer());
+        }
+
+        private void add_custom_programmer(object sender, ExecutedRoutedEventArgs e)
+        {
+            DialogCustomProgrammer dialog = new DialogCustomProgrammer();
+            if (dialog.ShowDialog() == true)
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }
