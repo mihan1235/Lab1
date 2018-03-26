@@ -49,5 +49,10 @@ namespace Lab1
             }
             return obj;
         }
+
+        private void NotAccept_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+        }
     }
 }

@@ -65,7 +65,7 @@
                 <Label Content="Researcher" HorizontalAlignment="Center" ></Label>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                     <ListBox x:Name="ListBoxRes" Margin="2" MinWidth="300" Height="300"
-                         ItemsSource="{Binding Source={StaticResource key_view_Researchers}}"/>
+                         ItemsSource="{Binding Source={StaticResource key_view_Researchers}}" SelectionChanged="ListBoxRes_SelectionChanged"/>
                 </ScrollViewer>
                 <Label Margin="2" Content="Selected Researcher:" HorizontalAlignment="Left" ></Label>
                 <Grid ShowGridLines="True">
@@ -82,17 +82,21 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Content="Name:"></Label>
-                    <TextBlock HorizontalAlignment="Stretch" Grid.Column="1" Text="Empty"></TextBlock>
-                    <Label Grid.Row="1" Grid.Column="0" Content="Surname"></Label>
-                    <TextBlock HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column ="1" Text="Empty"/>
+                    <TextBlock  HorizontalAlignment="Stretch" Grid.Column="1" 
+                               Text="{Binding ElementName=ListBoxRes, Path=SelectedItem.Name, Mode=OneWay}"></TextBlock>
+                    <Label  Grid.Row="1" Grid.Column="0" Content="Surname" Height="25" Margin="0,0.4,0.2,0" VerticalAlignment="Top"></Label>
+                    <TextBlock HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column ="1" 
+                               Text="{Binding ElementName=ListBoxRes, Path=SelectedItem.Name, Mode=OneWay}"/>
                     <Label Grid.Row="2" Grid.Column="0" Content="Experience"></Label>
                     <TextBlock HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column ="1" Text="Empty"/>
                     <Label Grid.Row="3" Grid.Column="0" Content="Birthday day time"></Label>
-                    <TextBlock HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column ="1" Text="Empty"/>
+                    <TextBlock HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column ="1" 
+                               Text="{Binding ElementName=ListBoxRes, Path=SelectedItem.Birthday, Mode=OneWay}"/>
                 </Grid>
                 <Label Content="Papers:" HorizontalAlignment="Center"></Label>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                    <ListBox HorizontalAlignment="Stretch" Height="200"></ListBox>
+                    <ListBox HorizontalAlignment="Stretch" Height="200" 
+                             ItemsSource="{Binding ElementName=ListBoxRes, Path=SelectedItem.PapersList, Mode=OneWay}" ></ListBox>
                 </ScrollViewer>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="2" Grid.RowSpan="2">
@@ -124,7 +128,8 @@
             <Label DockPanel.Dock ="Top" Content="Collection is not changed" HorizontalAlignment="Center"></Label>
             <DockPanel DockPanel.Dock="Right" HorizontalAlignment="Center">
                 <Label Content="Percentage of researchers:"></Label>
-                <TextBlock MinWidth="30"></TextBlock>
+                <TextBlock MinWidth="30" Name ="PersantageRes" Text="{Binding Source={StaticResource key_department},
+                    Path=PercentageOfResearchers,StringFormat={}{0:p}}"></TextBlock>
             </DockPanel>
         </DockPanel>
     </Grid>

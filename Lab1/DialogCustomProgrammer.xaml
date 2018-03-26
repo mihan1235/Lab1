@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab1"
         mc:Ignorable="d"
-        Title="DialogCustomProgrammer" Height="320" Width="382">
+        Title="DialogCustomProgrammer" Height="330" Width="590">
     
     <Grid>
         <StackPanel Margin="1">
@@ -23,12 +23,12 @@
             </DockPanel>
             <StackPanel Margin="2">
                 <Label Content="Choose paper's themes:"></Label>
-                <ListBox ItemsSource="{Binding Source={StaticResource key_department}, Path = PapersSet }" MinHeight="119"></ListBox>
+                <ListBox ItemsSource="{Binding Source={StaticResource key_department}, Path = ProjectSet }" MinHeight="119" Width="Auto"></ListBox>
             </StackPanel>
             <Grid >
                 <Button IsDefault="True" Click="Accept_Click" HorizontalAlignment="Left" Margin="23,5,0,0"
                         MinWidth="60">Ok</Button>
-                <Button IsCancel="True" Click="Accept_Click" HorizontalAlignment="Right" Margin="0,5,23,0"
+                <Button IsCancel="True" Click="NotAccept_Click" HorizontalAlignment="Right" Margin="0,5,23,0"
                         MinWidth="60">Cancel</Button>
             </Grid>
         </StackPanel>

@@ -59,34 +59,17 @@ namespace Lab1
             obj.AddDefaultPerson();
         }
 
+        private float count_persentage_of_researchers()
+        {
+            
+            return ListBoxRes.Items.Count / ListBoxP.Items.Count;
+        }
+
         private void DO_add_def_researcher(object sender, RoutedEventArgs e)
         {
             var obj = (DepartmentObservable)this.FindResource("key_department");
             obj.AddDefaultResearcher();
-        }
-
-        //private void make_custom_programmer()
-        //{
-        //    DialogCustomProgrammer dialog = new DialogCustomProgrammer();
-        //    if (dialog.ShowDialog() == true)
-        //    {
-
-        //    }
-        //    else
-        //    {
-
-        //    }
-        //}
-
-        //private void add_custom_programmer(object sender, RoutedEventArgs e)
-        //{
-        //    make_custom_programmer();
-        //}
-
-        //private void context_menu_custom_pr(object sender, RoutedEventArgs e)
-        //{
-        //    make_custom_programmer();
-        //}
+        }        
 
         private void new_make_DOCollection(object sender, RoutedEventArgs e)
         {
@@ -129,6 +112,12 @@ namespace Lab1
             {
 
             }
+        }
+
+        private void ListBoxRes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Researcher res = (Researcher) ListBoxRes.SelectedItem;
+            
         }
     }
 }
