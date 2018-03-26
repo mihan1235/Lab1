@@ -28,14 +28,14 @@ namespace library
             set;
         }
 
-        List<Paper> PapersSet;
+        List<Paper> PapersSet = new List<Paper>();
 
         public DepartmentObservable()
         {
             
-            AddDefaultPerson();
-            AddDefaultPerson();
-            AddDefaultPerson();
+            //AddDefaultPerson();
+            //AddDefaultPerson();
+            //AddDefaultPerson();
             PapersSet.Add(new Paper("How not to do bad things",0,new DateTime(1995,05,31)));
             PapersSet.Add(new Paper("Why doese nobody need functional analysis",0, new DateTime(2002, 12, 01)));
             PapersSet.Add(new Paper("Why everybody love C language!?", 0, new DateTime(2017, 01, 13)));

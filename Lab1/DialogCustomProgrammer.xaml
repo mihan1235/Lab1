@@ -10,11 +10,11 @@
         <StackPanel Margin="1">
             <DockPanel Margin="2">
                 <Label Content="Name"></Label>
-                <TextBlock HorizontalAlignment="Stretch" ></TextBlock>                
+                <TextBox HorizontalAlignment="Stretch" ></TextBox>                
             </DockPanel>
             <DockPanel Margin="2">
                 <Label Content="Surname"></Label>
-                <TextBlock HorizontalAlignment="Stretch" ></TextBlock>
+                <TextBox HorizontalAlignment="Stretch" ></TextBox>
             </DockPanel>
             <DockPanel Margin="2">
                 <Label Content="Day of birthday"></Label>

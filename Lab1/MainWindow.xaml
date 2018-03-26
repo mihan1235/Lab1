@@ -46,24 +46,28 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Grid.Column="0">
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
                 <Label Content="DepartmentObservable" HorizontalAlignment="Center" ></Label>
-                <ListBox x:Name="ListboxDO" Margin="2" MinWidth="300" MinHeight="300" 
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <ListBox x:Name="ListboxDO" Margin="2" MinWidth="300" Height="660" 
                          ItemsSource="{Binding Source={StaticResource key_department}}">
-                    <ListBox.ContextMenu>
-                        <ContextMenu >
-                            <MenuItem Header="Add default Person" Click="DO_add_def_person"></MenuItem>
-                            <MenuItem Header="Add Default Researcher" Click="DO_add_def_researcher"></MenuItem>
-                            <MenuItem Header="Add Default Programmer" Click="DO_add_def_programmer"></MenuItem>
-                            <MenuItem Header="Remove" ></MenuItem>
-                        </ContextMenu>
-                    </ListBox.ContextMenu>
-                </ListBox>
+                        <ListBox.ContextMenu>
+                            <ContextMenu >
+                                <MenuItem Header="Add default Person" Click="DO_add_def_person"></MenuItem>
+                                <MenuItem Header="Add Default Researcher" Click="DO_add_def_researcher"></MenuItem>
+                                <MenuItem Header="Add Default Programmer" Click="DO_add_def_programmer"></MenuItem>
+                                <MenuItem Header="Remove" ></MenuItem>
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
+                    </ListBox>
+                </ScrollViewer>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1">
                 <Label Content="Researcher" HorizontalAlignment="Center" ></Label>
-                <ListBox x:Name="ListBoxRes" Margin="2" MinWidth="300" MinHeight="300"
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <ListBox x:Name="ListBoxRes" Margin="2" MinWidth="300" Height="300"
                          ItemsSource="{Binding Source={StaticResource key_view_Researchers}}"/>
+                </ScrollViewer>
                 <Label Margin="2" Content="Selected Researcher:" HorizontalAlignment="Left" ></Label>
                 <Grid ShowGridLines="True">
                     <!-- Устанавливаем две строки -->
@@ -88,25 +92,29 @@
                     <TextBlock HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column ="1" Text="Empty"/>
                 </Grid>
                 <Label Content="Papers:" HorizontalAlignment="Center"></Label>
-                <ListBox HorizontalAlignment="Stretch" MinHeight="200"></ListBox>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <ListBox HorizontalAlignment="Stretch" Height="200"></ListBox>
+                </ScrollViewer>
             </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="2">
+            <StackPanel Grid.Row="0" Grid.Column="2" Grid.RowSpan="2">
                 <Label Content="Programmer" HorizontalAlignment="Center" ></Label>
-                <ListBox x:Name="ListBoxP" Margin ="2" MinWidth="300" MinHeight="300"
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <ListBox x:Name="ListBoxP" Margin ="2" MinWidth="300" Height="660"
                          ItemsSource="{Binding Source={StaticResource key_view_Programmers}}">
-                    <ListBox.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="Add custom" Command="local:CustomCommands.AddCustomProgrammer">
-                                <MenuItem.CommandBindings>
-                                    <CommandBinding Command="local:CustomCommands.AddCustomProgrammer"
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Add custom" Command="local:CustomCommands.AddCustomProgrammer">
+                                    <MenuItem.CommandBindings>
+                                        <CommandBinding Command="local:CustomCommands.AddCustomProgrammer"
                                                     Executed="add_custom_programmer"></CommandBinding>
-                                </MenuItem.CommandBindings>
-                            </MenuItem>
-                            <MenuItem Header="Add default"></MenuItem>
-                            <MenuItem Header="Remove"></MenuItem>
-                        </ContextMenu>
-                    </ListBox.ContextMenu>
-                </ListBox>
+                                    </MenuItem.CommandBindings>
+                                </MenuItem>
+                                <MenuItem Header="Add default"></MenuItem>
+                                <MenuItem Header="Remove"></MenuItem>
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
+                    </ListBox>
+                </ScrollViewer>
             </StackPanel>
         </Grid>
         <DockPanel Grid.Row="2">
