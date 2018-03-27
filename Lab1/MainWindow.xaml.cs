@@ -94,12 +94,6 @@ namespace Lab1
             }
         }
 
-        private void DO_add_def_programmer(object sender, RoutedEventArgs e)
-        {
-            var obj = (DepartmentObservable)this.FindResource("key_department");
-            obj.Add(new Programmer());
-        }
-
         private void add_custom_programmer(object sender, ExecutedRoutedEventArgs e)
         {
             DialogCustomProgrammer dialog = new DialogCustomProgrammer();
@@ -118,6 +112,12 @@ namespace Lab1
         {
             Researcher res = (Researcher) ListBoxRes.SelectedItem;
             
+        }
+
+        private void add_def_programmer(object sender, ExecutedRoutedEventArgs e)
+        {
+            var obj = (DepartmentObservable)this.FindResource("key_department");
+            obj.Add(new Programmer());
         }
     }
 }

@@ -16,6 +16,8 @@
     <Window.CommandBindings>
         <CommandBinding Command="local:CustomCommands.AddCustomProgrammer"
                         Executed="add_custom_programmer"></CommandBinding>
+        <CommandBinding Command="local:CustomCommands.AddDefaultProgrammer"
+                        Executed="add_def_programmer"></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -31,7 +33,7 @@
             </MenuItem>
             <MenuItem Header="Edit Programmers">
                 <MenuItem Header="Add Custom" Command="local:CustomCommands.AddCustomProgrammer"></MenuItem>
-                <MenuItem Header="Add Default"></MenuItem>
+                <MenuItem Header="Add Default" Command="local:CustomCommands.AddDefaultProgrammer"></MenuItem>
                 <MenuItem Header="Remove"></MenuItem>
             </MenuItem>
         </Menu>
@@ -54,7 +56,13 @@
                             <ContextMenu >
                                 <MenuItem Header="Add default Person" Click="DO_add_def_person"></MenuItem>
                                 <MenuItem Header="Add Default Researcher" Click="DO_add_def_researcher"></MenuItem>
-                                <MenuItem Header="Add Default Programmer" Click="DO_add_def_programmer"></MenuItem>
+                                <MenuItem Header="Add Default Programmer" Command="local:CustomCommands.AddDefaultProgrammer">
+                                    <MenuItem.CommandBindings>
+                                        <CommandBinding Command ="local:CustomCommands.AddDefaultProgrammer"
+                                            Executed="add_def_programmer">
+                                        </CommandBinding>
+                                    </MenuItem.CommandBindings>
+                                </MenuItem>
                                 <MenuItem Header="Remove" ></MenuItem>
                             </ContextMenu>
                         </ListBox.ContextMenu>
@@ -112,7 +120,13 @@
                                                     Executed="add_custom_programmer"></CommandBinding>
                                     </MenuItem.CommandBindings>
                                 </MenuItem>
-                                <MenuItem Header="Add default"></MenuItem>
+                                <MenuItem Header="Add default" Command="local:CustomCommands.AddDefaultProgrammer">
+                                    <MenuItem.CommandBindings>
+                                        <CommandBinding Command ="local:CustomCommands.AddDefaultProgrammer"
+                                            Executed="add_def_programmer">
+                                        </CommandBinding>
+                                    </MenuItem.CommandBindings>
+                                </MenuItem>
                                 <MenuItem Header="Remove"></MenuItem>
                             </ContextMenu>
                         </ListBox.ContextMenu>
@@ -125,7 +139,7 @@
                 <RadioButton Content="Date Template"></RadioButton>
                 <RadioButton Content="No Date Template"></RadioButton>
             </StackPanel>
-            <Label DockPanel.Dock ="Top" Content="Collection is not changed" HorizontalAlignment="Center"></Label>
+            <Label DockPanel.Dock ="Top" Content="{Binding Source={StaticResource key_department}, Path=CollectionIsChanged}" HorizontalAlignment="Center"></Label>
             <DockPanel DockPanel.Dock="Right" HorizontalAlignment="Center">
                 <Label Content="Percentage of researchers:"></Label>
                 <TextBlock MinWidth="30" Name ="PersantageRes" Text="{Binding Source={StaticResource key_department},

@@ -47,6 +47,10 @@ namespace Lab1
             {
                 obj.Birthday = (DateTime)CustomProgrammerBirth.SelectedDate;
             }
+            foreach(var item in ProjectList.SelectedItems)
+            {
+                obj.ProjectsList.Add((Project) item);
+            }
             return obj;
         }
 

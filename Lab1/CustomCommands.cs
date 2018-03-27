@@ -11,6 +11,7 @@ namespace Lab1
     {
         // Создание команды AddCustomProgrammer
         private static RoutedUICommand add_custom_programmer;
+        private static RoutedUICommand add_default_programmer;
 
         static CustomCommands()
         {
@@ -19,11 +20,17 @@ namespace Lab1
             //inputs.Add(new KeyGesture(Key.R, ModifierKeys.Control, "Ctrl + R"));
             //requery = new RoutedUICommand("Requery", "Requery", typeof(CustomCommands), inputs);
             add_custom_programmer = new RoutedUICommand("AddCustomProgrammer", "AddCustomProgrammer", typeof(CustomCommands));
+            add_default_programmer = new RoutedUICommand("AddDefaultProgrammer", "AddDefaultProgrammer", typeof(CustomCommands));
         }
 
         public static RoutedUICommand AddCustomProgrammer
         {
             get { return add_custom_programmer; }
+        }
+
+        public static RoutedUICommand AddDefaultProgrammer
+        {
+            get { return add_default_programmer; }
         }
     }
 }

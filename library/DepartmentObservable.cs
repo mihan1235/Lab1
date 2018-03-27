@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace library
 {
-    public class DepartmentObservable : ObservableCollection<Person>
+    public class DepartmentObservable : ObservableCollection<Person>, INotifyPropertyChanged
     {
         bool collection_is_changed;
         public bool CollectionIsChanged
@@ -20,6 +21,7 @@ namespace library
             set
             {
                 collection_is_changed = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("CollectionIsChanged"));
             }
         }
         double percentage_of_researchers = 15;
@@ -76,18 +78,19 @@ namespace library
             CollectionChanged += detect_collection_changed;
         }
 
-        private float count_persentage_of_researchers()
+        private double count_persentage_of_researchers()
         {
             var res_list = from obj in Items
                            where obj is Researcher
                            select obj;
-            return res_list.Count()/Items.Count();
+            return (double)res_list.Count()/(double) Items.Count();
         }
 
         private void detect_collection_changed(object sender, NotifyCollectionChangedEventArgs e)
         {
             CollectionIsChanged = true;
             percentage_of_researchers = count_persentage_of_researchers();
+            OnPropertyChanged(new PropertyChangedEventArgs("PercentageOfResearchers"));
         }
 
         public void AddDefaultPerson()
@@ -102,7 +105,7 @@ namespace library
             //((Paper)papers_set.ElementAt(2)).PublicationAuthorAmount++;
             obj.ProjectsList.Add(new Project());
             Add(obj);
-            percentage_of_researchers = count_persentage_of_researchers();
+            //percentage_of_researchers = count_persentage_of_researchers();
         }
 
         public void AddDefaultProgrammer()

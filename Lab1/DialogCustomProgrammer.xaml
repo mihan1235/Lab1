@@ -23,7 +23,8 @@
             </DockPanel>
             <StackPanel Margin="2">
                 <Label Content="Choose paper's themes:"></Label>
-                <ListBox ItemsSource="{Binding Source={StaticResource key_department}, Path = ProjectSet }" MinHeight="119" Width="Auto"></ListBox>
+                <ListBox Name ="ProjectList" ItemsSource="{Binding Source={StaticResource key_department}, Path = ProjectSet }" 
+                         MinHeight="119" Width="Auto" SelectionMode="Extended"></ListBox>
             </StackPanel>
             <Grid >
                 <Button IsDefault="True" Click="Accept_Click" HorizontalAlignment="Left" Margin="23,5,0,0"
