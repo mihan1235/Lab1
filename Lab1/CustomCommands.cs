@@ -12,6 +12,7 @@ namespace Lab1
         // Создание команды AddCustomProgrammer
         private static RoutedUICommand add_custom_programmer;
         private static RoutedUICommand add_default_programmer;
+        //private static RoutedUICommand remove;
 
         static CustomCommands()
         {
@@ -21,6 +22,7 @@ namespace Lab1
             //requery = new RoutedUICommand("Requery", "Requery", typeof(CustomCommands), inputs);
             add_custom_programmer = new RoutedUICommand("AddCustomProgrammer", "AddCustomProgrammer", typeof(CustomCommands));
             add_default_programmer = new RoutedUICommand("AddDefaultProgrammer", "AddDefaultProgrammer", typeof(CustomCommands));
+           // remove = new RoutedUICommand("Remove", "Remove", typeof(CustomCommands));
         }
 
         public static RoutedUICommand AddCustomProgrammer
@@ -32,5 +34,10 @@ namespace Lab1
         {
             get { return add_default_programmer; }
         }
+
+        //public static RoutedUICommand Remove
+        //{
+        //    get { return remove; }
+        //}
     }
 }

@@ -18,6 +18,7 @@
                         Executed="add_custom_programmer"></CommandBinding>
         <CommandBinding Command="local:CustomCommands.AddDefaultProgrammer"
                         Executed="add_def_programmer"></CommandBinding>
+        
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -34,7 +35,7 @@
             <MenuItem Header="Edit Programmers">
                 <MenuItem Header="Add Custom" Command="local:CustomCommands.AddCustomProgrammer"></MenuItem>
                 <MenuItem Header="Add Default" Command="local:CustomCommands.AddDefaultProgrammer"></MenuItem>
-                <MenuItem Header="Remove"></MenuItem>
+                <MenuItem Header="Remove" Click="P_remove_programmer"></MenuItem>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1" x:Name="grid_content_2"  ShowGridLines="True">
@@ -63,7 +64,7 @@
                                         </CommandBinding>
                                     </MenuItem.CommandBindings>
                                 </MenuItem>
-                                <MenuItem Header="Remove" ></MenuItem>
+                                <MenuItem Header="Remove" Click="DO_remove_obj"></MenuItem>
                             </ContextMenu>
                         </ListBox.ContextMenu>
                     </ListBox>

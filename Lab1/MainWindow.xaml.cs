@@ -119,5 +119,37 @@ namespace Lab1
             var obj = (DepartmentObservable)this.FindResource("key_department");
             obj.Add(new Programmer());
         }
+
+        private void P_remove_programmer(object sender, RoutedEventArgs e)
+        {
+            int index = ListBoxP.SelectedIndex;
+            var DO = (DepartmentObservable)this.FindResource("key_department");
+            if (index != -1)
+            {
+                DO.RemoveAt(index);
+            }
+        }
+
+        private void DO_remove_obj(object sender, RoutedEventArgs e)
+        {
+            int index = ListboxDO.SelectedIndex;
+            var DO = (DepartmentObservable)this.FindResource("key_department");
+            if (index != -1)
+            {
+                DO.RemoveAt(index);
+            }
+        }
     }
+
+        //private void remove_object(object sender, ExecutedRoutedEventArgs e)
+        //{
+        //    var obj = (ListBox)e.Source;
+        //    int index = obj.SelectedIndex;
+        //    var DO = (DepartmentObservable)this.FindResource("key_department");
+        //    if (index != -1)
+        //    {
+        //        DO.RemoveAt(index);
+        //    }
+        //}
+    //}
 }
