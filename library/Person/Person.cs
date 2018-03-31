@@ -60,7 +60,7 @@ namespace library
 
         public override string ToString()
         {
-            return "Person " + init_arr[0] + ' ' +
+            return this.GetType().ToString()+" " + init_arr[0] + ' ' +
                    init_arr[1] + ' ' + birth_day.ToString() + " of type Person\n";
         }
 
@@ -74,6 +74,18 @@ namespace library
             Person obj = new Person(init_arr[0],init_arr[1]);
             obj.Birthday = this.Birthday;
             return obj;           
+        }
+
+        public string Type
+        {
+            get
+            {
+                return this.GetType().ToString();
+            }
+            set
+            {
+
+            }
         }
 
         public int Count { get; }

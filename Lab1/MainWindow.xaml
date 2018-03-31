@@ -12,6 +12,20 @@
                               Filter="FilterByResearcher"></CollectionViewSource>
         <CollectionViewSource Source="{Binding Source={StaticResource key_department}}" x:Key="key_view_Programmers"
                               Filter="FilterByProgrammer"></CollectionViewSource>
+        <DataTemplate x:Key="key_Item_DataTemplate">
+            <Border Margin="2" BorderThickness="1" BorderBrush="SteelBlue"  CornerRadius="4" Width="300">
+                <StackPanel Margin="2" >
+                    <TextBox Margin="2" Text="{Binding Path=Type}"></TextBox>
+                    <DockPanel Margin="2">
+                        <Label Content="Name"></Label>
+                        <TextBox Text="{Binding Path=Name}" HorizontalAlignment="Stretch" ></TextBox>
+                    </DockPanel>
+                    <ListBox ItemsSource="{Binding Path = PapersList}" ></ListBox>
+                    <ListBox ItemsSource="{Binding Path = ProjectsList}" ></ListBox>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="local:CustomCommands.AddCustomProgrammer"
@@ -20,132 +34,134 @@
                         Executed="add_def_programmer"></CommandBinding>
         
     </Window.CommandBindings>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Menu>
-            <MenuItem Header="File">
-                <MenuItem Header="New" Click="new_make_DOCollection"></MenuItem>
-                <MenuItem Header="Open" Click="open_DOCollection"></MenuItem>
-                <MenuItem Header="Save" Click="save_DOCollection"></MenuItem>
-            </MenuItem>
-            <MenuItem Header="Edit Programmers">
-                <MenuItem Header="Add Custom" Command="local:CustomCommands.AddCustomProgrammer"></MenuItem>
-                <MenuItem Header="Add Default" Command="local:CustomCommands.AddDefaultProgrammer"></MenuItem>
-                <MenuItem Header="Remove" Click="P_remove_programmer"></MenuItem>
-            </MenuItem>
-        </Menu>
-        <Grid Grid.Row="1" x:Name="grid_content_2"  ShowGridLines="True">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition  Width="Auto"/>
-                <ColumnDefinition  Width="Auto"/>
-                <ColumnDefinition  Width="Auto"/>
-            </Grid.ColumnDefinitions>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
-                <Label Content="DepartmentObservable" HorizontalAlignment="Center" ></Label>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                    <ListBox x:Name="ListboxDO" Margin="2" MinWidth="300" Height="660" 
-                         ItemsSource="{Binding Source={StaticResource key_department}}">
-                        <ListBox.ContextMenu>
-                            <ContextMenu >
-                                <MenuItem Header="Add default Person" Click="DO_add_def_person"></MenuItem>
-                                <MenuItem Header="Add Default Researcher" Click="DO_add_def_researcher"></MenuItem>
-                                <MenuItem Header="Add Default Programmer" Command="local:CustomCommands.AddDefaultProgrammer">
-                                    <MenuItem.CommandBindings>
-                                        <CommandBinding Command ="local:CustomCommands.AddDefaultProgrammer"
+            <Menu>
+                <MenuItem Header="File">
+                    <MenuItem Header="New" Click="new_make_DOCollection"></MenuItem>
+                    <MenuItem Header="Open" Click="open_DOCollection"></MenuItem>
+                    <MenuItem Header="Save" Click="save_DOCollection"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Edit Programmers">
+                    <MenuItem Header="Add Custom" Command="local:CustomCommands.AddCustomProgrammer"></MenuItem>
+                    <MenuItem Header="Add Default" Command="local:CustomCommands.AddDefaultProgrammer"></MenuItem>
+                    <MenuItem Header="Remove" Click="P_remove_programmer"></MenuItem>
+                </MenuItem>
+            </Menu>
+            <Grid Grid.Row="1" x:Name="grid_content_2"  ShowGridLines="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="Auto"/>
+                    <ColumnDefinition  Width="Auto"/>
+                    <ColumnDefinition  Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+                    <Label Content="DepartmentObservable" HorizontalAlignment="Center" ></Label>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <ListBox x:Name="ListboxDO" Margin="2" MinWidth="300" Height="660" 
+                         ItemsSource="{Binding Source={StaticResource key_department}}" >
+                            <ListBox.ContextMenu>
+                                <ContextMenu >
+                                    <MenuItem Header="Add default Person" Click="DO_add_def_person"></MenuItem>
+                                    <MenuItem Header="Add Default Researcher" Click="DO_add_def_researcher"></MenuItem>
+                                    <MenuItem Header="Add Default Programmer" Command="local:CustomCommands.AddDefaultProgrammer">
+                                        <MenuItem.CommandBindings>
+                                            <CommandBinding Command ="local:CustomCommands.AddDefaultProgrammer"
                                             Executed="add_def_programmer">
-                                        </CommandBinding>
-                                    </MenuItem.CommandBindings>
-                                </MenuItem>
-                                <MenuItem Header="Remove" Click="DO_remove_obj"></MenuItem>
-                            </ContextMenu>
-                        </ListBox.ContextMenu>
-                    </ListBox>
-                </ScrollViewer>
-            </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="1">
-                <Label Content="Researcher" HorizontalAlignment="Center" ></Label>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                    <ListBox x:Name="ListBoxRes" Margin="2" MinWidth="300" Height="300"
+                                            </CommandBinding>
+                                        </MenuItem.CommandBindings>
+                                    </MenuItem>
+                                    <MenuItem Header="Remove" Click="DO_remove_obj"></MenuItem>
+                                </ContextMenu>
+                            </ListBox.ContextMenu>
+                        </ListBox>
+                    </ScrollViewer>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="1">
+                    <Label Content="Researcher" HorizontalAlignment="Center" ></Label>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <ListBox x:Name="ListBoxRes" Margin="2" MinWidth="300" Height="300"
                          ItemsSource="{Binding Source={StaticResource key_view_Researchers}}" SelectionChanged="ListBoxRes_SelectionChanged"/>
-                </ScrollViewer>
-                <Label Margin="2" Content="Selected Researcher:" HorizontalAlignment="Left" ></Label>
-                <Grid ShowGridLines="True">
-                    <!-- Устанавливаем две строки -->
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <!-- Устанавливаем три столбца -->
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="Name:"></Label>
-                    <TextBlock  HorizontalAlignment="Stretch" Grid.Column="1" 
+                    </ScrollViewer>
+                    <Label Margin="2" Content="Selected Researcher:" HorizontalAlignment="Left" ></Label>
+                    <Grid ShowGridLines="True">
+                        <!-- Устанавливаем две строки -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <!-- Устанавливаем три столбца -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Name:"></Label>
+                        <TextBlock  HorizontalAlignment="Stretch" Grid.Column="1" 
                                Text="{Binding ElementName=ListBoxRes, Path=SelectedItem.Name, Mode=OneWay}"></TextBlock>
-                    <Label  Grid.Row="1" Grid.Column="0" Content="Surname" Height="25" Margin="0,0.4,0.2,0" VerticalAlignment="Top"></Label>
-                    <TextBlock HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column ="1" 
+                        <Label  Grid.Row="1" Grid.Column="0" Content="Surname" Height="25" Margin="0,0.4,0.2,0" VerticalAlignment="Top"></Label>
+                        <TextBlock HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column ="1" 
                                Text="{Binding ElementName=ListBoxRes, Path=SelectedItem.Name, Mode=OneWay}"/>
-                    <Label Grid.Row="2" Grid.Column="0" Content="Experience"></Label>
-                    <TextBlock HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column ="1" Text="Empty"/>
-                    <Label Grid.Row="3" Grid.Column="0" Content="Birthday day time"></Label>
-                    <TextBlock HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column ="1" 
+                        <Label Grid.Row="2" Grid.Column="0" Content="Experience"></Label>
+                        <TextBlock HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column ="1" Text="Empty"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="Birthday day time"></Label>
+                        <TextBlock HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column ="1" 
                                Text="{Binding ElementName=ListBoxRes, Path=SelectedItem.Birthday, Mode=OneWay}"/>
-                </Grid>
-                <Label Content="Papers:" HorizontalAlignment="Center"></Label>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                    <ListBox HorizontalAlignment="Stretch" Height="200" 
+                    </Grid>
+                    <Label Content="Papers:" HorizontalAlignment="Center"></Label>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <ListBox HorizontalAlignment="Stretch" Height="200" 
                              ItemsSource="{Binding ElementName=ListBoxRes, Path=SelectedItem.PapersList, Mode=OneWay}" ></ListBox>
-                </ScrollViewer>
-            </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="2" Grid.RowSpan="2">
-                <Label Content="Programmer" HorizontalAlignment="Center" ></Label>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                    <ListBox x:Name="ListBoxP" Margin ="2" MinWidth="300" Height="660"
+                    </ScrollViewer>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" Grid.RowSpan="2">
+                    <Label Content="Programmer" HorizontalAlignment="Center" ></Label>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <ListBox x:Name="ListBoxP" Margin ="2" MinWidth="300" Height="660"
                          ItemsSource="{Binding Source={StaticResource key_view_Programmers}}">
-                        <ListBox.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Add custom" Command="local:CustomCommands.AddCustomProgrammer">
-                                    <MenuItem.CommandBindings>
-                                        <CommandBinding Command="local:CustomCommands.AddCustomProgrammer"
+                            <ListBox.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Add custom" Command="local:CustomCommands.AddCustomProgrammer">
+                                        <MenuItem.CommandBindings>
+                                            <CommandBinding Command="local:CustomCommands.AddCustomProgrammer"
                                                     Executed="add_custom_programmer"></CommandBinding>
-                                    </MenuItem.CommandBindings>
-                                </MenuItem>
-                                <MenuItem Header="Add default" Command="local:CustomCommands.AddDefaultProgrammer">
-                                    <MenuItem.CommandBindings>
-                                        <CommandBinding Command ="local:CustomCommands.AddDefaultProgrammer"
+                                        </MenuItem.CommandBindings>
+                                    </MenuItem>
+                                    <MenuItem Header="Add default" Command="local:CustomCommands.AddDefaultProgrammer">
+                                        <MenuItem.CommandBindings>
+                                            <CommandBinding Command ="local:CustomCommands.AddDefaultProgrammer"
                                             Executed="add_def_programmer">
-                                        </CommandBinding>
-                                    </MenuItem.CommandBindings>
-                                </MenuItem>
-                                <MenuItem Header="Remove"></MenuItem>
-                            </ContextMenu>
-                        </ListBox.ContextMenu>
-                    </ListBox>
-                </ScrollViewer>
-            </StackPanel>
-        </Grid>
-        <DockPanel Grid.Row="2">
-            <StackPanel DockPanel.Dock="Left">
-                <RadioButton Content="Date Template"></RadioButton>
-                <RadioButton Content="No Date Template"></RadioButton>
-            </StackPanel>
-            <Label DockPanel.Dock ="Top" Content="{Binding Source={StaticResource key_department}, Path=CollectionIsChanged}" HorizontalAlignment="Center"></Label>
-            <DockPanel DockPanel.Dock="Right" HorizontalAlignment="Center">
-                <Label Content="Percentage of researchers:"></Label>
-                <TextBlock MinWidth="30" Name ="PersantageRes" Text="{Binding Source={StaticResource key_department},
+                                            </CommandBinding>
+                                        </MenuItem.CommandBindings>
+                                    </MenuItem>
+                                    <MenuItem Header="Remove"></MenuItem>
+                                </ContextMenu>
+                            </ListBox.ContextMenu>
+                        </ListBox>
+                    </ScrollViewer>
+                </StackPanel>
+            </Grid>
+            <DockPanel Grid.Row="2">
+                <StackPanel DockPanel.Dock="Left">
+                    <RadioButton Name="DateTemplate" Content="Date Template" IsChecked="True" Checked="DateTemplate_Checked"></RadioButton>
+                    <RadioButton Name="NoDateTemplate" Content="No Date Template" IsChecked="True" Checked="NoDateTemplate_Checked"></RadioButton>
+                </StackPanel>
+                <Label DockPanel.Dock ="Top" Content="{Binding Source={StaticResource key_department}, Path=CollectionIsChanged}" HorizontalAlignment="Center"></Label>
+                <DockPanel DockPanel.Dock="Right" HorizontalAlignment="Center">
+                    <Label Content="Percentage of researchers:"></Label>
+                    <TextBlock Padding="4" MinWidth="30" Name ="PersantageRes" Text="{Binding Source={StaticResource key_department},
                     Path=PercentageOfResearchers,StringFormat={}{0:p}}"></TextBlock>
+                </DockPanel>
             </DockPanel>
-        </DockPanel>
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>

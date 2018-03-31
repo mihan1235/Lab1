@@ -24,7 +24,7 @@ namespace library
                 OnPropertyChanged(new PropertyChangedEventArgs("CollectionIsChanged"));
             }
         }
-        double percentage_of_researchers = 15;
+        double percentage_of_researchers = 0;
         public double PercentageOfResearchers
         {
             get

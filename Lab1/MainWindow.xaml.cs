@@ -59,11 +59,11 @@ namespace Lab1
             obj.AddDefaultPerson();
         }
 
-        private float count_persentage_of_researchers()
-        {
+        //private float count_persentage_of_researchers()
+        //{
             
-            return ListBoxRes.Items.Count / ListBoxP.Items.Count;
-        }
+        //    return ListBoxRes.Items.Count / ListBoxP.Items.Count;
+        //}
 
         private void DO_add_def_researcher(object sender, RoutedEventArgs e)
         {
@@ -104,7 +104,7 @@ namespace Lab1
             }
             else
             {
-
+                
             }
         }
 
@@ -126,8 +126,11 @@ namespace Lab1
             var DO = (DepartmentObservable)this.FindResource("key_department");
             if (index != -1)
             {
-                DO.RemoveAt(index);
+                var prog = (Programmer) ListBoxP.Items.GetItemAt(index);
+                DO.Remove(prog);
+                //DO.RemoveAt(index);
             }
+            MessageBox.Show(index.ToString());
         }
 
         private void DO_remove_obj(object sender, RoutedEventArgs e)
@@ -137,6 +140,25 @@ namespace Lab1
             if (index != -1)
             {
                 DO.RemoveAt(index);
+            }
+            //MessageBox.Show(e.OriginalSource.ToString());
+        }
+
+        private void NoDateTemplate_Checked(object sender, RoutedEventArgs e)
+        {
+            ListboxDO.ItemTemplate = null;
+            ListBoxP.ItemTemplate = null;
+            ListBoxRes.ItemTemplate = null; ;
+        }
+
+        private void DateTemplate_Checked(object sender, RoutedEventArgs e)
+        {
+            DataTemplate template = (DataTemplate)this.FindResource("key_Item_DataTemplate");
+            if (template != null)
+            {
+                ListboxDO.ItemTemplate = template;
+                ListBoxP.ItemTemplate = template;
+                ListBoxRes.ItemTemplate = template;
             }
         }
     }
