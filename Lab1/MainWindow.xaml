@@ -8,9 +8,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Width="1288" Height="833.2">
     <Window.Resources>
-        <CollectionViewSource Source="{Binding Source={StaticResource key_department}}" x:Key="key_view_Researchers" 
+        <CollectionViewSource Source="{DynamicResource key_department}" x:Key="key_view_Researchers" 
                               Filter="FilterByResearcher"></CollectionViewSource>
-        <CollectionViewSource Source="{Binding Source={StaticResource key_department}}" x:Key="key_view_Programmers"
+        <CollectionViewSource Source="{DynamicResource key_department}" x:Key="key_view_Programmers"
                               Filter="FilterByProgrammer"></CollectionViewSource>
         <DataTemplate x:Key="key_Item_DataTemplate">
             <Border Margin="2" BorderThickness="1" BorderBrush="SteelBlue"  CornerRadius="4" Width="300">
@@ -67,7 +67,7 @@
                     <Label Content="DepartmentObservable" HorizontalAlignment="Center" ></Label>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                         <ListBox x:Name="ListboxDO" Margin="2" MinWidth="300" Height="660" 
-                         ItemsSource="{Binding Source={StaticResource key_department}}" >
+                         ItemsSource="{DynamicResource key_department}">
                             <ListBox.ContextMenu>
                                 <ContextMenu >
                                     <MenuItem Header="Add default Person" Click="DO_add_def_person"></MenuItem>
@@ -153,7 +153,7 @@
             <DockPanel Grid.Row="2">
                 <StackPanel DockPanel.Dock="Left">
                     <RadioButton Name="DateTemplate" Content="Date Template" IsChecked="True" Checked="DateTemplate_Checked"></RadioButton>
-                    <RadioButton Name="NoDateTemplate" Content="No Date Template" IsChecked="True" Checked="NoDateTemplate_Checked"></RadioButton>
+                    <RadioButton Name="NoDateTemplate" Content="No Date Template"  Checked="NoDateTemplate_Checked"></RadioButton>
                 </StackPanel>
                 <Label DockPanel.Dock ="Top" Content="{Binding Source={StaticResource key_department}, Path=CollectionIsChanged}" HorizontalAlignment="Center"></Label>
                 <DockPanel DockPanel.Dock="Right" HorizontalAlignment="Center">

@@ -69,11 +69,30 @@ namespace Lab1
         {
             var obj = (DepartmentObservable)this.FindResource("key_department");
             obj.AddDefaultResearcher();
-        }        
+        }   
+        
+        void save_DOCollection()
+        {
+            SaveFileDialog save_diag = new SaveFileDialog();
+            if (save_diag.ShowDialog() == true)
+            {
+
+            }
+        }
 
         private void new_make_DOCollection(object sender, RoutedEventArgs e)
         {
-
+            var DO = (DepartmentObservable)this.FindResource("key_department");
+            if (DO.CollectionIsChanged)
+            {
+                MessageBoxResult result = MessageBox.Show("Collection is changed! Do you want to save it?", "Warning",
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    save_DOCollection();
+                }
+            }
+            Application.Current.Resources["key_department"] = new DepartmentObservable();
         }
 
         private void open_DOCollection(object sender, RoutedEventArgs e)
@@ -87,11 +106,7 @@ namespace Lab1
 
         private void save_DOCollection(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog save_diag = new SaveFileDialog();
-            if (save_diag.ShowDialog() == true)
-            {
-
-            }
+            save_DOCollection();
         }
 
         private void add_custom_programmer(object sender, ExecutedRoutedEventArgs e)
