@@ -155,7 +155,9 @@
                     <RadioButton Name="DateTemplate" Content="Date Template" IsChecked="True" Checked="DateTemplate_Checked"></RadioButton>
                     <RadioButton Name="NoDateTemplate" Content="No Date Template"  Checked="NoDateTemplate_Checked"></RadioButton>
                 </StackPanel>
-                <Label DockPanel.Dock ="Top" Content="{Binding Source={StaticResource key_department}, Path=CollectionIsChanged}" HorizontalAlignment="Center"></Label>
+                <Label DockPanel.Dock ="Top" DataContext="{DynamicResource key_department}" 
+                       Content="{Binding Path=CollectionIsChanged}" 
+                       HorizontalAlignment="Center"></Label>
                 <DockPanel DockPanel.Dock="Right" HorizontalAlignment="Center">
                     <Label Content="Percentage of researchers:"></Label>
                     <TextBlock Padding="4" MinWidth="30" Name ="PersantageRes" Text="{Binding Source={StaticResource key_department},
