@@ -13,6 +13,7 @@ namespace library
         Long
     }
 
+    [Serializable]
     public class Project: IDeepCopy, ITeamCount
     {
         public string Theme { get; set; }

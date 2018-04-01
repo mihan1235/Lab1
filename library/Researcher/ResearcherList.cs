@@ -5,7 +5,8 @@ using System.Linq;
 
 namespace library
 {
-	public class ResearcherList
+    [Serializable]
+    public class ResearcherList
 	{
 		Random rnd = new Random();
 		List<Researcher> researchers_list=new List<Researcher>();

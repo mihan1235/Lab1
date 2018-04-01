@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace library
 {
+    [Serializable]
     public class Person : ITeamCount, IDeepCopy
     {
         protected string[] init_arr;

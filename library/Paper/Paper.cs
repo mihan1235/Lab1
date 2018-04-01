@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace library
 {
+    [Serializable]
     public class Paper: IDeepCopy, ITeamCount
     {
         public string PublicationName { get; set; }

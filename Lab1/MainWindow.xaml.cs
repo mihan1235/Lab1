@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using library;
 using Microsoft.Win32;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
 
 namespace Lab1
 {
@@ -76,6 +79,19 @@ namespace Lab1
             SaveFileDialog save_diag = new SaveFileDialog();
             if (save_diag.ShowDialog() == true)
             {
+                try
+                {
+                    BinaryFormatter binFormat = new BinaryFormatter();
+                    using (Stream fStream = new FileStream(save_diag.FileName, FileMode.Create, FileAccess.Write, FileShare.None))
+                    {
+                        var DO = (DepartmentObservable)this.FindResource("key_department");
+                        binFormat.Serialize(fStream, DO);
+                    }
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
 
             }
         }
@@ -100,7 +116,17 @@ namespace Lab1
             OpenFileDialog open_diag = new OpenFileDialog();
             if (open_diag.ShowDialog() == true)
             {
-
+                try
+                {
+                    BinaryFormatter binFormat = new BinaryFormatter();
+                    Stream fStream = File.OpenRead(open_diag.FileName);
+                    DepartmentObservable DO = (DepartmentObservable)binFormat.Deserialize(fStream);
+                    Application.Current.Resources["key_department"] = DO;
+                }
+                catch(Exception exc)
+                {
+                    MessageBox.Show(exc.ToString(),"Exception", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 

@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace library
 {
-    public class DepartmentObservable : ObservableCollection<Person>, INotifyPropertyChanged
+    [Serializable]
+    public class DepartmentObservable : ObservableCollection<Person>, INotifyPropertyChanged,IDeserializationCallback
     {
+        [NonSerialized]
         bool collection_is_changed;
         public bool CollectionIsChanged
         {
@@ -24,6 +27,7 @@ namespace library
                 OnPropertyChanged(new PropertyChangedEventArgs("CollectionIsChanged"));
             }
         }
+
         double percentage_of_researchers = 0;
         public double PercentageOfResearchers
         {
@@ -98,9 +102,25 @@ namespace library
             Add(new Person());
         }
 
+        Random rnd = new Random();
+        char generate_rnd_char()
+        {
+            return (char)rnd.Next(0x0061, 0x007A);
+        }
+
+        string generate_rnd_string(int length = 6)
+        {
+            string name = "";
+            for (int i = 0; i < length; i++)
+            {
+                name = name + generate_rnd_char();
+            }
+            return name;
+        }
+
         public void AddDefaultResearcher()
         {
-            var obj = new Researcher();
+            var obj = new Researcher(generate_rnd_string(), generate_rnd_string());
             obj.PapersList.Add(new Paper());
             //((Paper)papers_set.ElementAt(2)).PublicationAuthorAmount++;
             obj.ProjectsList.Add(new Project());
@@ -126,6 +146,12 @@ namespace library
                 str += item.ToString();
             }
             return str;
+        }
+
+        public void OnDeserialization(object sender)
+        {
+            //percentage_of_researchers = 0;
+            collection_is_changed = false;
         }
     }
 }

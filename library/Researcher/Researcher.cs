@@ -7,12 +7,14 @@ using System.Collections;
 
 namespace library
 {
-    
-	public class Researcher: Person, IEnumerable, IComparable<IAverageTimeFrame>, IComparer<IAverageTimeFrame>, IAverageTimeFrame
+
+    [Serializable]
+    public class Researcher: Person, IEnumerable, IComparable<IAverageTimeFrame>, IComparer<IAverageTimeFrame>, IAverageTimeFrame
     {
         bool IsAcademicDegree { get; set; }
         List<Paper> papers_list = new List<Paper>();
         List<Project> projects_list=new List<Project>();
+        
         public Researcher(string name = "unknown_name", string surname = "unknown_surname",
                 int day_birth = 1, int month_birth = 1, int year_birth = 1, bool academic_degree=false)
                : base(name,surname,day_birth,month_birth,year_birth)
