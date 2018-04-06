@@ -152,6 +152,7 @@ namespace library
         {
             //percentage_of_researchers = 0;
             collection_is_changed = false;
+            CollectionChanged += detect_collection_changed;
         }
     }
 }

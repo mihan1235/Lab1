@@ -133,6 +133,8 @@ namespace Lab1
         private void save_DOCollection(object sender, RoutedEventArgs e)
         {
             save_DOCollection();
+            var DO = (DepartmentObservable)this.FindResource("key_department");
+            DO.CollectionIsChanged = false;
         }
 
         private void add_custom_programmer(object sender, ExecutedRoutedEventArgs e)
@@ -200,6 +202,20 @@ namespace Lab1
                 ListboxDO.ItemTemplate = template;
                 ListBoxP.ItemTemplate = template;
                 ListBoxRes.ItemTemplate = template;
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var DO = (DepartmentObservable)this.FindResource("key_department");
+            if (DO.CollectionIsChanged)
+            {
+                MessageBoxResult result = MessageBox.Show("Collection is changed! Do you want to save it?", "Warning",
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    save_DOCollection();
+                }
             }
         }
     }

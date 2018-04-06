@@ -6,7 +6,7 @@
         xmlns:lib="clr-namespace:library;assembly=library"
         xmlns:local="clr-namespace:Lab1"
         mc:Ignorable="d"
-        Title="MainWindow" Width="1288" Height="833.2">
+        Title="MainWindow" Width="1288" Height="833.2" Closing="Window_Closing">
     <Window.Resources>
         <CollectionViewSource Source="{DynamicResource key_department}" x:Key="key_view_Researchers" 
                               Filter="FilterByResearcher"></CollectionViewSource>
@@ -19,6 +19,10 @@
                     <DockPanel Margin="2">
                         <Label Content="Name"></Label>
                         <TextBox Text="{Binding Path=Name}" HorizontalAlignment="Stretch" ></TextBox>
+                    </DockPanel>
+                    <DockPanel Margin="2">
+                        <Label Content="Surname"></Label>
+                        <TextBox Text="{Binding Path=Surname}" HorizontalAlignment="Stretch" ></TextBox>
                     </DockPanel>
                     <ListBox ItemsSource="{Binding Path = PapersList}" ></ListBox>
                     <ListBox ItemsSource="{Binding Path = ProjectsList}" ></ListBox>
